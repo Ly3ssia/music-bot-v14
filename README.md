@@ -14,5 +14,5 @@
 
 ## 🚨 Destek İçin
 
-✈ Discord Sunucumuza Katıl: [Raven](https://discord.gg/altyapilar)
+✈ Discord Sunucumuz [Raven](https://discord.gg/altyapilar)
 
