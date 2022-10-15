@@ -1,17 +1,17 @@
-## Discord V14 Müzik Botu
+## Discord V14 Music Bot
 
-## 📑 Özellikler
+## 📑 Bot Performance
 
-- [x] Müzik Sistemleri
-- [x] Butonlu Embed Mesajlar
-- [x] Uygulama Komutları
+- [x] Music System
+- [x] MessageButton
+- [x] Slash Commands
 
-## 📷 Altyapıdan Görüntüler
+## 📷 Image
 ![image](https://user-images.githubusercontent.com/93944142/195988919-960c6142-227d-48f0-a563-4e2b3d8f70b4.png)
 
-## 🤖 Yardım
+## 🤖 Information
 `Bu altyapı yapılırken destek alınmıştır.`
 
-## 🚨 Destek Sunucusu
+## 🚨 Support Server
 ✈ [Raven](https://discord.gg/altyapilar)
 
