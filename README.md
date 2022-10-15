@@ -12,6 +12,6 @@
 ## 🤖 Yardım
 `Bu altyapı yapılırken destek alınmıştır.`
 
-## 🚨 Destek Sunucumuz
+## 🚨 Destek Sunucusu
 ✈ [Raven](https://discord.gg/altyapilar)
 
