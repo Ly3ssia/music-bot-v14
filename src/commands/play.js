@@ -21,7 +21,7 @@ await client.distube.play(interaction.member.voice.channel, string);
 const tracks = await client.player.search(string, {
     requestedBy: interaction.user
 }).then(x => x.tracks[0]);
-if (!tracks) return;
+if (!tracks) return interaction.followUp("🎵 | Music started.")
 const embed = new Discord.EmbedBuilder()
 .addFields({name: "Title", value: `${tracks.title}`, inline: true})
 .addFields({name: "Author", value: `${tracks.author}`, inline: true})
@@ -30,17 +30,29 @@ const embed = new Discord.EmbedBuilder()
 .addFields({name: "Thumbnail", value: "[Click]("+tracks.thumbnail+")", inline: true})
 .addFields({name: "Video", value: "[Click]("+tracks.url+")", inline: true})
 .setColor("Aqua")
-.setImage(`${tracks.thumbnail}`)
+.setImage(`${tracks.thumbnail || "https://cdn.discordapp.com/attachments/997487955860009038/1009062859889705062/Baslksz-1.png"}`)
 const row = new Discord.ActionRowBuilder()
 .addComponents(
 new Discord.ButtonBuilder()
-.setEmoji("<:dur:815477220910432297>")
-.setStyle(Discord.ButtonStyle.Secondary)
+.setEmoji("🎵")
+.setStyle(Discord.ButtonStyle.Danger)
 .setCustomId("dur"),
 new Discord.ButtonBuilder()
 .setEmoji("🔊")
+.setStyle(Discord.ButtonStyle.Success)
+.setCustomId("volume"),
+new Discord.ButtonBuilder()
+.setEmoji("⏩")
+.setStyle(Discord.ButtonStyle.Primary)
+.setCustomId("skip"),
+new Discord.ButtonBuilder()
+.setEmoji("🌀")
 .setStyle(Discord.ButtonStyle.Secondary)
-.setCustomId("volume")
+.setCustomId("loop"),
+new Discord.ButtonBuilder()
+.setLabel("Support Server")
+.setStyle(Discord.ButtonStyle.Link)
+.setURL("https://discord.gg/altyapilar")
 )
 
 db.set(`music_${interaction.member.voice.channel.id}`, { muzik: string, user: interaction.user.id, başlık: tracks.title, yükleyen: tracks.author, süre: tracks.duration, görüntülenme: tracks.views, thumb: tracks.thumbnail, video: tracks.url})
