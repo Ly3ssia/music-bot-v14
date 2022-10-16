@@ -23,6 +23,7 @@ const player = new Player(client);
 client.player = player;
 client.distube = new DisTube(client, {
   leaveOnStop: false,
+  leaveOnFinish: true,
   emitNewSongOnly: true,
   emitAddSongWhenCreatingQueue: false,
   emitAddListWhenCreatingQueue: false,
@@ -94,12 +95,66 @@ const embed = new Discord.EmbedBuilder()
 const row = new Discord.ActionRowBuilder()
 .addComponents(
 new Discord.ButtonBuilder()
-.setEmoji("<:turkbayragi:531486786778824704>")
-.setStyle(Discord.ButtonStyle.Secondary)
+.setEmoji("🎵")
+.setStyle(Discord.ButtonStyle.Danger)
 .setCustomId("devam")
 )
 client.distube.pause(interaction)
 return interaction.update({embeds: [embed], components: [row]})
+}
+if (interaction.customId === "skip") {
+  const queue = client.distube.getQueue(interaction);
+     if (!queue) return interaction.reply(`There is no song on the list yet.`)
+  let data = db.fetch(`music_${interaction.member.voice.channel.id}`)
+  if (!data) return interaction.reply({content: "I'm sorry.Error **404**", ephemeral: true})
+    if (queue.songs.length === 1) return interaction.reply("No song found in the queue!")
+  let usır = data.user
+  let string = data.string
+  if (interaction.user.id !== usır) return interaction.reply({content: "Only the person who wrote the command can use this button.", ephemeral: true})
+const baslik = data.başlık
+const author = data.yükleyen
+const sure = data.süre
+const izlenme = data.görüntülenme
+const thumb = data.thumb
+const url = data.video
+const embed = new Discord.EmbedBuilder()
+.addFields({name: "Title", value: `${baslik}`, inline: true})
+.addFields({name: "Author", value: `${author}`, inline: true})
+.addFields({name: "Time", value: `${sure}`, inline: true})
+.addFields({name: "Views", value: `${izlenme}`, inline: true})
+.addFields({name: "Thumbnail", value: "[Click]("+thumb+")", inline: true})
+.addFields({name: "Video", value: "[Click]("+url+")", inline: true})
+.setColor("Aqua")
+.setImage(`${thumb}`)
+
+client.distube.skip(interaction)
+return interaction.update({embeds: [embed]})
+}
+if (interaction.customId === "loop") {
+  const queue = client.distube.getQueue(interaction);
+     if (!queue) return interaction.reply(`There is no song on the list yet.`)
+  let data = db.fetch(`music_${interaction.member.voice.channel.id}`)
+  if (!data) return interaction.reply({content: "I'm sorry.Error **404**", ephemeral: true})
+  let usır = data.user
+  let string = data.string
+  if (interaction.user.id !== usır) return interaction.reply({content: "Only the person who wrote the command can use this button.", ephemeral: true})
+const baslik = data.başlık
+const author = data.yükleyen
+const sure = data.süre
+const izlenme = data.görüntülenme
+const thumb = data.thumb
+const url = data.video
+const embed = new Discord.EmbedBuilder()
+.addFields({name: "Title", value: `${baslik}`, inline: true})
+.addFields({name: "Author", value: `${author}`, inline: true})
+.addFields({name: "Time", value: `${sure}`, inline: true})
+.addFields({name: "Views", value: `${izlenme}`, inline: true})
+.addFields({name: "Thumbnail", value: "[Click]("+thumb+")", inline: true})
+.addFields({name: "Video", value: "[Click]("+url+")", inline: true})
+.setColor("Aqua")
+.setImage(`${thumb || "https://cdn.discordapp.com/attachments/997487955860009038/1009062859889705062/Baslksz-1.png"}`)
+client.distube.setRepeatMode(interaction, 1);
+return interaction.update({embeds: [embed]})
 }
 if (interaction.customId === "devam") {
   const queue = client.distube.getQueue(interaction);
@@ -127,13 +182,25 @@ if (interaction.customId === "devam") {
   const row = new Discord.ActionRowBuilder()
   .addComponents(
   new Discord.ButtonBuilder()
-  .setEmoji("<:dur:815477220910432297>")
-  .setStyle(Discord.ButtonStyle.Secondary)
+  .setEmoji("🎵")
+  .setStyle(Discord.ButtonStyle.Danger)
   .setCustomId("dur"),
   new Discord.ButtonBuilder()
   .setEmoji("🔊")
+  .setStyle(Discord.ButtonStyle.Success)
+  .setCustomId("volume"),
+  new Discord.ButtonBuilder()
+  .setEmoji("⏩")
+  .setStyle(Discord.ButtonStyle.Primary)
+  .setCustomId("skip"),
+  new Discord.ButtonBuilder()
+  .setEmoji("🌀")
   .setStyle(Discord.ButtonStyle.Secondary)
-  .setCustomId("volume")
+  .setCustomId("loop"),
+  new Discord.ButtonBuilder()
+  .setLabel("Support Server")
+  .setStyle(Discord.ButtonStyle.Link)
+  .setURL("https://discord.gg/altyapilar")
   )
   client.distube.resume(interaction)
   interaction.update({embeds: [embed], components: [row]})
