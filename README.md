@@ -6,11 +6,13 @@
 - [x] MessageButton
 - [x] Slash Commands
 
-## 📷 Image
-![image](https://user-images.githubusercontent.com/93944142/195988919-960c6142-227d-48f0-a563-4e2b3d8f70b4.png)
+## 🔗 Platform
+・Youtube
+・Spotify
+・Video Url
 
-## 🤖 Information
-`Bu altyapı yapılırken destek alınmıştır.`
+## 📷 Image
+![image](https://user-images.githubusercontent.com/93944142/196050127-e3c09dd4-2f34-49c7-bbdf-c355ef11766e.png)
 
 ## 🚨 Support Server
 ✈ [Raven](https://discord.gg/altyapilar)
