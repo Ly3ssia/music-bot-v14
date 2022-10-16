@@ -3,7 +3,7 @@
 ## 📑 Bot Performance
 
 - [x] Music System
-- [x] Message Button
+- [x] MessageButton
 - [x] Slash Commands
 
 ## 📷 Image
