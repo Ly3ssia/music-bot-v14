@@ -1,0 +1,25 @@
+{
+"tr": {
+"sesli": "Lütfen bir sesli kanala girin!",
+"basladi": "🎵 | Müzik başladı.",
+"baslik": "Başlık",
+"yükleyen": "Yükleyen",
+"zaman": "Süre",
+"izlenme": "Görüntülenme",
+"listeboş": "Şuan çalan bir müzik bulunamadı!",
+"devam": "Şarkı başarıyla devam ettiriliyor..",
+"listeaz": "Atlanabilecek bir şarkı yok!",
+"durduruldu": "Şarkı başarıyla durduruldu.",
+"döngü": "Şarkı başarıyla döngüye alındı.",
+"atla": "Şarkı başarıyla geçildi.",
+"sayı": "Lütfen bir sayı girin!",
+"yuz": "Girilen sayı 100 sayısından büyük olamaz.",
+"bir": "Girilen sayı 1 sayısından küçük olamaz.",
+"volume": "Ses başarıyla değiştirildi.",
+"bass": "Şarkı başarıyla boostlandı.",
+"slow": "Müzik başarıyla yavaşlatıldı.",
+"speed": "Şarkı başarıyla hızlandırıldı."
+
+}
+
+}
