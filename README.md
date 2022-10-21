@@ -12,8 +12,7 @@
 ![image](https://user-images.githubusercontent.com/93944142/196050243-7efb55f3-99c7-4cce-aabb-1a3e844357d7.png)
 
 ## 📷 Image
-![image](https://user-images.githubusercontent.com/93944142/196050127-e3c09dd4-2f34-49c7-bbdf-c355ef11766e.png)
-
+![image](https://user-images.githubusercontent.com/93944142/197290115-b4497988-e53d-4227-89f9-5f0fa5078ddf.png)
 ## 🚨 Support Server
 ✈ [Raven](https://discord.gg/altyapilar)
 
