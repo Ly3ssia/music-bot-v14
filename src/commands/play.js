@@ -3,15 +3,18 @@ const { EmbedBuilder, PermissionsBitField } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const Discord = require("discord.js")
 const db = require("croxydb")
+const languagefile = require("../language.json")
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("play")
-    .setDescription("🎵 Music!")
-    .addStringOption(option => option.setName("name").setDescription("Song!").setRequired(true)),
+    .setDescription("🎵| Play Music!")
+    .addStringOption(option => option.setName("name").setDescription("Song Name?").setRequired(true)),
     run: async (client, interaction, track) => {
       await interaction.deferReply().catch(err => {})
       const string = interaction.options.getString("name")
       let voiceChannel = interaction.member.voice.channel
+      const language = db.fetch(`language_${interaction.user.id}`)
+      if (!language) {
 if (!voiceChannel) return interaction.followUp({content: "You are not on an audio channel!"})
 const queue = client.distube.getQueue(interaction);
 
@@ -35,28 +38,49 @@ const row = new Discord.ActionRowBuilder()
 .addComponents(
 new Discord.ButtonBuilder()
 .setEmoji("🎵")
-.setStyle(Discord.ButtonStyle.Danger)
+.setStyle(Discord.ButtonStyle.Secondary)
 .setCustomId("dur"),
 new Discord.ButtonBuilder()
 .setEmoji("🔊")
-.setStyle(Discord.ButtonStyle.Success)
+.setStyle(Discord.ButtonStyle.Secondary)
 .setCustomId("volume"),
 new Discord.ButtonBuilder()
 .setEmoji("⏩")
-.setStyle(Discord.ButtonStyle.Primary)
+.setStyle(Discord.ButtonStyle.Secondary)
 .setCustomId("skip"),
 new Discord.ButtonBuilder()
 .setEmoji("🌀")
 .setStyle(Discord.ButtonStyle.Secondary)
 .setCustomId("loop"),
 new Discord.ButtonBuilder()
-.setLabel("Support Server")
-.setStyle(Discord.ButtonStyle.Link)
-.setURL("https://discord.gg/altyapilar")
+.setEmoji("❓")
+.setStyle(Discord.ButtonStyle.Secondary)
+.setCustomId("soru")
+
 )
+const row2 = new Discord.ActionRowBuilder()
+.addComponents(
+  new Discord.ButtonBuilder()
+  .setEmoji("🥁")
+  .setStyle(Discord.ButtonStyle.Secondary)
+  .setCustomId("bassboost"),
+  new Discord.ButtonBuilder()
+  .setEmoji("<:slowmode:740952943460614185>")
+  .setStyle(Discord.ButtonStyle.Secondary)
+  .setCustomId("slowmode"),
+  new Discord.ButtonBuilder()
+  .setEmoji("💨")
+  .setStyle(Discord.ButtonStyle.Secondary)
+  .setCustomId("fast"),
+  new Discord.ButtonBuilder()
+  .setLabel("Support Server")
+  .setStyle(Discord.ButtonStyle.Link)
+  .setURL("https://discord.gg/altyapilar")
+)
+await interaction.followUp({embeds: [embed], components: [row, row2]}).then(messages => {
+db.set(`music_${interaction.guild.id}`, { kanal: interaction.channel.id, mesaj: messages.id, muzik: string, user: interaction.user.id, başlık: tracks.title, yükleyen: tracks.author, süre: tracks.duration, görüntülenme: tracks.views, thumb: tracks.thumbnail, video: tracks.url})
+})
+}
 
-db.set(`music_${interaction.member.voice.channel.id}`, { muzik: string, user: interaction.user.id, başlık: tracks.title, yükleyen: tracks.author, süre: tracks.duration, görüntülenme: tracks.views, thumb: tracks.thumbnail, video: tracks.url})
-await interaction.followUp({embeds: [embed], components: [row]})
-
- }
+}
 }

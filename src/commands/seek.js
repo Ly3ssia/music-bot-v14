@@ -6,19 +6,23 @@ const db = require("croxydb")
 const languagefile = require("../language.json")
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("pause")
-    .setDescription("🎵 | Stop Music!"),
+    .setName("seek")
+    .setDescription("🎵 | Seek Music!")
+    .addStringOption(option => option.setName("number").setDescription("How far do you want to go?").setRequired(true)),
     run: async (client, interaction) => {
       await interaction.deferReply().catch(err => {})
-      const language = db.fetch(`language_${interaction.user.id}`)
-if (!language) {
       const queue = client.distube.getQueue(interaction);
          if (!queue) return interaction.followUp(`There is no song on the list yet.`)
-         if (queue.paused === true) return interaction.followUp("The music is already stopped.")
+         const number = interaction.options.getString("number")
+         if(isNaN(number)) return interaction.followUp("Give me number!")
+         const type = parseInt(number)
+         queue.seek((queue.currentTime + type))
+         return interaction.followUp("Successfully fast forwarded.")
 
-interaction.followUp({content: "Successfully paused your song."})
-client.distube.pause(interaction);
-}
 
+try {
+ } catch (e) {
+   return;
+ }
  }
 }
