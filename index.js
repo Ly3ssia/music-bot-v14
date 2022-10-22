@@ -242,31 +242,51 @@ if (interaction.customId === "devam") {
   .addFields({name: "Video", value: "[Click]("+url+")", inline: true})
   .setColor("Aqua")
   .setImage(`${thumb}`)
-  const row = new Discord.ActionRowBuilder()
-  .addComponents(
+ const row = new Discord.ActionRowBuilder()
+.addComponents(
+new Discord.ButtonBuilder()
+.setEmoji("🎵")
+.setStyle(Discord.ButtonStyle.Secondary)
+.setCustomId("dur"),
+new Discord.ButtonBuilder()
+.setEmoji("🔊")
+.setStyle(Discord.ButtonStyle.Secondary)
+.setCustomId("volume"),
+new Discord.ButtonBuilder()
+.setEmoji("⏩")
+.setStyle(Discord.ButtonStyle.Secondary)
+.setCustomId("skip"),
+new Discord.ButtonBuilder()
+.setEmoji("🌀")
+.setStyle(Discord.ButtonStyle.Secondary)
+.setCustomId("loop"),
+new Discord.ButtonBuilder()
+.setEmoji("❓")
+.setStyle(Discord.ButtonStyle.Secondary)
+.setCustomId("soru")
+
+)
+const row2 = new Discord.ActionRowBuilder()
+.addComponents(
   new Discord.ButtonBuilder()
-  .setEmoji("🎵")
-  .setStyle(Discord.ButtonStyle.Danger)
-  .setCustomId("dur"),
-  new Discord.ButtonBuilder()
-  .setEmoji("🔊")
-  .setStyle(Discord.ButtonStyle.Success)
-  .setCustomId("volume"),
-  new Discord.ButtonBuilder()
-  .setEmoji("⏩")
-  .setStyle(Discord.ButtonStyle.Primary)
-  .setCustomId("skip"),
-  new Discord.ButtonBuilder()
-  .setEmoji("🌀")
+  .setEmoji("🥁")
   .setStyle(Discord.ButtonStyle.Secondary)
-  .setCustomId("loop"),
+  .setCustomId("bassboost"),
+  new Discord.ButtonBuilder()
+  .setEmoji("<:slowmode:740952943460614185>")
+  .setStyle(Discord.ButtonStyle.Secondary)
+  .setCustomId("slowmode"),
+  new Discord.ButtonBuilder()
+  .setEmoji("💨")
+  .setStyle(Discord.ButtonStyle.Secondary)
+  .setCustomId("fast"),
   new Discord.ButtonBuilder()
   .setLabel("Support Server")
   .setStyle(Discord.ButtonStyle.Link)
   .setURL("https://discord.gg/altyapilar")
-  )
+)
   client.distube.resume(interaction)
-  interaction.update({embeds: [embed], components: [row]})
+  interaction.update({embeds: [embed], components: [row, row2]})
 }
 })
 
